@@ -1,12 +1,15 @@
 from sentence_transformers import SentenceTransformer
 from core import date
+import numpy as np
 
 model = SentenceTransformer('sentence-transformers/bert-base-nli-mean-tokens')
 
 
 def transform_description(description):
     embeddings = model.encode(description)
-    return embeddings
+    arr_list = [float(x) if isinstance(x, np.float32) else x for x in embeddings.tolist()]
+
+    return arr_list
     
 def splice_description(description):
     #only take the first sentence

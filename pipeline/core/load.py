@@ -9,10 +9,15 @@ username = os.getenv("MONGO_USERNAME")
 password = os.getenv("MONGO_PASSWORD")
 
 def load(df):
+    print (df)
     client = pymongo.MongoClient("mongodb+srv://{}:{}@cluster0.srokaih.mongodb.net/?retryWrites=true&w=majority".format(username,password))
     db = client["cinepool"]
     collection = db["media"]
     collection.insert_many(df)
-    collection.delete_many({"date": {"$eq": b_date}})
+
+    try:
+        collection.delete_many({"date": {"$eq": b_date}})
+    except:
+        pass
 
     print("Successfully loaded data into MongoDB")

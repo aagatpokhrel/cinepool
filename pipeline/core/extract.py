@@ -31,9 +31,13 @@ def crawl_url(url):
     
 def parse_article(soup):
     objects = {}
-    article = soup.find('article',{'data-testid': 'calendar-section'})
-    release_date = soup.find('div',{'data-testid': 'release-date'})
-    if (release_date.text != date):
+    try:
+        article = soup.find('article',{'data-testid': 'calendar-section'})
+        release_date = article.find('h3')
+        print (release_date)
+        if (release_date.text != date):
+            return objects
+    except:
         return objects
     try:
         a_tags = article.find_all('a',{'role': 'button'})
