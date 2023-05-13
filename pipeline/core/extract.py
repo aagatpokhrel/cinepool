@@ -2,12 +2,11 @@
 
 import requests
 from bs4 import BeautifulSoup
-import datetime
+from core import date
 
 shows_url = "https://www.imdb.com/calendar/?ref_=rlm&region=US&type=TV"
 movies_url = "https://www.imdb.com/calendar/?region=us"
 
-date = datetime.datetime.now()
 
 def crawl_url(url):
     url = "https://www.imdb.com" + url
@@ -34,15 +33,18 @@ def parse_article(soup):
     objects = {}
     article = soup.find('article',{'data-testid': 'calendar-section'})
     release_date = soup.find('div',{'data-testid': 'release-date'})
-    if (release_date.text != date.strftime("%B %d, %Y")):
+    if (release_date.text != date):
         return objects
     try:
         a_tags = article.find_all('a',{'role': 'button'})
         for a_tag in a_tags:
             title = a_tag.text
-            url = a_tag.get('href')
-            genres, descriptions = crawl_url(url)
-            objects[title] = {'genres': genres, 'description': descriptions}
+            if (title!=''):
+                url = a_tag.get('href')
+                genres, descriptions = crawl_url(url)
+                objects[title] = {'genres': genres, 'description': descriptions}
+            else:
+                continue
     except AttributeError:
         pass
     return objects
