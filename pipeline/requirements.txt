@@ -2,3 +2,4 @@ beautifulsoup4
 requests
 sentence_transformers
 pymongo
+python-dotenv

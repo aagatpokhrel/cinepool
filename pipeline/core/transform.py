@@ -44,5 +44,4 @@ def merge_transform(df):
 
 def transform(df):
     df = merge_transform(df)
-    print (df)
     return df

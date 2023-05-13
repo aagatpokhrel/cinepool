@@ -3,7 +3,7 @@ from core.transform import transform
 from core.load import load
 
 def main():
-    # Extract
+    # Extract the information
     df = extract()
     # Transform
     df = transform(df)
