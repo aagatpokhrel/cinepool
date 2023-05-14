@@ -25,10 +25,7 @@ def create_task_scheduler_job():
     # Build the task scheduler command
     path_to_script = os.path.join(os.getcwd(),"/pipeline/main.py")
     task_command = "python {}".format(path_to_script)
-    task_command_args = ""
     task_name = "My Script"
-    task_trigger = "/Daily /At %s:%s /Next:%s" % (start_time.hour, start_time.minute, start_date.strftime('%Y-%m-%d'))
-
     # Create the task scheduler job
     subprocess.run(["schtasks.exe", "/Create", "/TN", task_name, "/TR", task_command,"/SC", "Daily", "/ST", start_time.strftime('%H:%M'), "/SD", start_date.strftime('%m/%d/%Y'), "/F"])
 
