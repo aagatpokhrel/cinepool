@@ -18,7 +18,7 @@ def create_cron_job():
 
 
 def create_task_scheduler_job():
-    # Run the script at 3:00 am every day
+    # Change the script to include your time here. Right now it runs the script at 3:00 am every day
     start_date = datetime.now() + timedelta(days=1)
     start_time = time(hour=3, minute=0)
 
