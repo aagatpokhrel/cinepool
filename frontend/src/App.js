@@ -2,6 +2,7 @@ import React, {useState, useEffect } from 'react';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import './App.css';
 
 function App() {
   const [mediaType, setMediaType] = useState('movie');
