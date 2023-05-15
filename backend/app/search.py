@@ -9,22 +9,29 @@ def return_embeddings(description):
     arr_list = [float(x) if isinstance(x, np.float32) else x for x in embeddings.tolist()]
     return arr_list
 
-
-
-def search(data):
+def search_db(data):
     #search for movies/shows
     search_query = {}
-    if (data['type']):
+    try:
         search_query['type'] = data['type']
-    if (data['genres']):
+    except:
+        pass
+
+    try:
         search_query['genres'] = data['genres']
-    if (data['date']):
+    except:
+        pass
+
+    try:
         search_query['date'] = data['date']
+    except:
+        pass
     
     documents = collection.find(search_query)
 
     if (data['description']):
         embedding = return_embeddings(data['description'])
 
-    print(documents)
+    for document in documents:
+        print (document)
 

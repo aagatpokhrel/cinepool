@@ -1,7 +1,7 @@
 from app import app,collection
 from flask import jsonify, request
 
-from app.search import search
+from app.search import search_db
 import json
 
 
@@ -19,6 +19,7 @@ def search():
     if request.method == 'POST':
         data = request.get_json()
         print(data)
-        return jsonify(search(data))
+        results = search_db(data)
+        return jsonify(results)
     else:
         return jsonify({"message":"Error"})
