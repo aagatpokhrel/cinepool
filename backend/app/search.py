@@ -1,6 +1,8 @@
 from app import collection
 import sentence_transformers
 import numpy as np
+from sklearn.cluster import KMeans
+
 
 def return_embeddings(description):
     #analyze description
@@ -8,6 +10,15 @@ def return_embeddings(description):
     embeddings = model.encode(description)
     arr_list = [float(x) if isinstance(x, np.float32) else x for x in embeddings.tolist()]
     return arr_list
+
+def search_description(documents, description):
+    #search for description
+    embedding = return_embeddings(description)
+    results = []
+    for document in documents:
+        if (document['desc_embedding'] == embedding):
+            results.append(document)
+    return results
 
 def search_db(data):
     #search for movies/shows
@@ -30,7 +41,7 @@ def search_db(data):
     documents = collection.find(search_query)
 
     if (data['description']):
-        embedding = return_embeddings(data['description'])
+        lists = search_description(documents, data['description'])
 
     for document in documents:
         print (document)

@@ -136,7 +136,7 @@ npm start
 
 #### Pipeline Implementation
 
-Firstly the pipeline was implemented. For this tasks we perform three crucial tasks i.e, extract, transform and load. The task is broken into:
+Firstly the pipeline was implemented (crawl for extraction and loading into the database). For this tasks we perform three crucial tasks i.e, extract, transform and load. The task is broken into:
 
 *  **Extract :**
     - First we crawl through imdb sites using beatifulsoup library. 
@@ -161,6 +161,9 @@ Flask is used in Backend to create backend app. We fetch the data from the mongo
 #### Frontend Implementation
 React is used for frontend. Contains a simple UI that sends axios post request to the backend service and retrieves relevant results.
 
+## How Analytics Works
+
+The language model (LM) is first used to transform the plot description into embedding list. Then the user's search description is also transformed into embedding list. Then we use cosine similarity to find the similarity between the two embedding lists. The higher the similarity, the more relevant the movie/show is to the user's search description. We then sort the results according to the similarity score and return the top 10 results.
 
 ## API Reference
 
