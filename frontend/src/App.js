@@ -7,7 +7,7 @@ import './App.css';
 function App() {
   const [mediaType, setMediaType] = useState('movie');
   const [genre, setGenre] = useState('');
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState('');
   const [description, setDescription] = useState('');
   const [data, setData] = useState([]);
 
@@ -37,7 +37,8 @@ function App() {
       description,
     })
       .then((response) => {
-        setData(response.data.results);
+        console.log(response.data)
+        setData(response.data);
       })
       .catch((error) => {
         console.error(error);
@@ -89,8 +90,8 @@ function App() {
           <div className="form-group">
             <label>Date</label>
             <DatePicker
-              selected={selectedDate}
-              onChange={handleDateChange}
+              // selected={selectedDate}
+              // onChange={handleDateChange}
               dateFormat="MM/dd/yyyy"
               minDate={new Date()}
               className="form-control"
@@ -98,7 +99,7 @@ function App() {
           </div>
           <div className="form-group">
             <label>Description</label>
-            <input type="text" value={description} onChange={handleDescriptionChange} />
+            <textarea value={description} onChange={handleDescriptionChange} />
           </div>
           <div className="form-group">
             <button type="submit" className="submit">Search</button>
@@ -107,9 +108,12 @@ function App() {
       </div>
       <div className="movie-container">
         {data.map((movie) => (
-          <div key={movie.id}>
-            <h3>{movie.title || movie.name}</h3>
-            <p>{movie.overview}</p>
+          <div key={movie._id} class="movie">
+            <h3>{movie.name}</h3>
+            <p>{movie.description}</p>
+            <p>Date: {movie.date}</p>
+            <p>Genres: {movie.genres.join(', ')}</p>
+            <p>Type: {movie.type}</p>
           </div>
         ))}
       </div>

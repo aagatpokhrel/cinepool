@@ -3,7 +3,7 @@
   --text-color: white;
   --button-color: #00986f;
   --button-hover-color: #00a87f;
-  --font-size: 16px;
+  --font-size: 20px;
 }
 
 .App {
@@ -37,6 +37,7 @@
 
 .movie-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-bottom: 2rem;
@@ -89,9 +90,42 @@ select {
   border-radius: 5px; /* Added border radius */
   cursor: pointer;
   transition: all 0.3s ease-in-out; /* Added animation */
+  height: 50px;
+  font-size: large;
 }
 
 .submit:hover {
   background-color: var(--button-hover-color);
   transform: translateY(-3px); /* Added animation */
+}
+
+textarea {
+  width: 100%;
+  height: 200px; /* Adjusted height */
+  font-size: 1.1em;
+  padding: 0.5em;
+  border-radius: 5px;
+  border: none;
+  background: #f5f5f5;
+}
+
+.form-control {
+  width: 100%;
+  font-size: 1.1em;
+  padding: 0.5em;
+  border-radius: 5px;
+  border: none;
+  background: #f5f5f5;
+}
+
+.movie {
+  display: flex;
+  flex-direction: row;
+  background-color: #2d313b;
+  color: #fff;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #555;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }

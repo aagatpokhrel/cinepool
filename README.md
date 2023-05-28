@@ -161,6 +161,8 @@ Flask is used in Backend to create backend app. We fetch the data from the mongo
 #### Frontend Implementation
 React is used for frontend. Contains a simple UI that sends axios post request to the backend service and retrieves relevant results.
 
+![Screenshot](result.png)
+
 ## How Analytics Works
 
 The language model (LM) is first used to transform the plot description into embedding list. Then the user's search description is also transformed into embedding list. Then we use cosine similarity to find the similarity between the two embedding lists. The higher the similarity, the more relevant the movie/show is to the user's search description. We then sort the results according to the similarity score and return the top 10 results.
@@ -203,7 +205,5 @@ To run this project, you will need to add the following environment variables to
 `MONGO_PASSWORD`
 
 
-## Screenshots
 
-![Screenshot]()
 
